@@ -1,7 +1,4 @@
-// var answers = [
-//     q1 = {a1: true, a2: false, a3: false},
-//     q2 = {a1: false, a2: true, a3: false}
-// ];
+$(document).ready(function () {
 
 var triviaDatabase = [
     {
@@ -11,7 +8,7 @@ var triviaDatabase = [
             "second answer",
             "third answer"
         ],
-        correctAnswer: "a",
+        correctAnswer: "0",
     },
     {
         question: "C is right",
@@ -20,66 +17,79 @@ var triviaDatabase = [
             "second answer",
             "third answer"
         ],
-        correctAnswer: "c",
+        correctAnswer: "2",
+    },
+    {
+        question: "B is right",
+        answers: [
+            "first answer",
+            "second answer",
+            "third answer"
+        ],
+        correctAnswer: "1",
+    },
+    {
+        question: "C is right",
+        answers: [
+            "first answer",
+            "second answer",
+            "third answer"
+        ],
+        correctAnswer: "2",
+    },
+    {
+        question: "B is right",
+        answers: [
+            "first answer",
+            "second answer",
+            "third answer"
+        ],
+        correctAnswer: "1",
     }
 ]
 
-// function createQuiz(){
-//     for(i=0; i<questions.length; i++){
-//         text =  questions[i].question;
-//         $("#trivia").append(questions[i].question);
-//         $("#trivia").append(text);
-//         // $("#trivia").append("<p>" + questions[i].answers + "</p>");
-//         console.log(questions[i].question);
-//         console.log(text);
-//     }
-// }
+var right = 0; //need to reset this after the result is presented
 
-// createQuiz();
-$(document).ready(function () {
-
-// var right = 0;
-
-// var userChoiceOne;
-
-// input[name="answerOne"]:checked
-
-//$("allQuestions").append("<h4>" + triviaDatabase[i].question + "</h4>")
-
-// for(i=0; i<triviaDatabase.length; i++){
-//     var newQuestion = $("<h4>").append(triviaDatabase[i].question); // .append("<h4>" + triviaDatabase[i].question + "</h4>")
-//     var newAnswer = $("<p>").append(triviaDatabase[i].answers[j]);//create loop for with j?
-//     $("#allQuestions").append(newQuestion);
-//     console.log(newQuestion);
-// }
-
+//creating the html for the trivia
 for(i=0; i<triviaDatabase.length; i++){
-    var newQuestion = $("<h4>").append(triviaDatabase[i].question); // .append("<h4>" + triviaDatabase[i].question + "</h4>")
+    var newQuestion = $("<h4>").append(triviaDatabase[i].question);
     $("#allQuestions").append(newQuestion);
-    var newAnswer = $("<div>");
+    var newAnswer = $('<div id=question' + i + '>');
 
     for(j=0; j<3; j++){//replace 3 by a variable down the line
         
-        newAnswer.append('<input type="radio" name="answer' + [i] + '" value="' + j + '">' + triviaDatabase[i].answers[j]);//create loop for with j?
+        newAnswer.append('<input type=radio name=answer' + i + ' value=' + j + '>' + triviaDatabase[i].answers[j]);
         console.log(triviaDatabase[i].answers[j]);
-        // console.log(newAnswer);
         
         $("#allQuestions").append(newAnswer);
     }
 
-    // newQuestion.append($("<p>").textContent = triviaDatabase[i].answers[j]);
     console.log(newQuestion);
 }
 
+//checking if user answers are right
+$("#submit").on("click", function () {
+    for(i=0; i<triviaDatabase.length; i++){
+        var userAnswer = $('#question' + i).children("input:checked").val();
+        console.log("userAnswer: " + userAnswer);
+        console.log("trivia[i].answer: " + triviaDatabase[i].correctAnswer);
+        if(userAnswer === triviaDatabase[i].correctAnswer){
+            right++;
+            console.log("right: " + right);
+        }
+    }
+
+});
+
+// test code
 // $("#submit").on("click", function () {
-//     var userAnswer = $('#questionOne').children("input:checked").val();
+//     var userAnswer = $("#questionOne").children("input:checked").val();
 //     console.log(userAnswer);
 //     console.log(triviaDatabase[0].correctAnswer);
 //     if(userAnswer === triviaDatabase[0].correctAnswer){
 //         right++;
 //         console.log(right);
-//     }
-
+// }
 // });
     
 console.log("test 2")
