@@ -15,21 +15,19 @@
 
 <body>
 
-<div class="jumbotron text-center">
-
-    <h1>Press Start to Begin the Quizz!</h1>
+<div class="container upper">
+    <h1 id="instruction">Press Start to Begin the Quizz!</h1>
     <button id="start">Start</button>
     <h2 id="timeLeft"></h2>
-    <h2 id="score"></h2>
+    <div id="score"></div>
+</div>
 
+<div class="container main">
+    <div id="allQuestions"></div>
 </div>
 
 <div class="container">
-    <div class="container" id="allQuestions"></div>
-</div>
-
-<div class="container" id="submit">
-    <button id="submitButton">HTML Submit</button>
+    <button id="submit">Submit</button>
 </div>
 
 </body>
